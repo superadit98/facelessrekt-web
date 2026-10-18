@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FacelessRekt — Apps &amp; Security Research</title>
-<meta name="description" content="FacelessRekt builds small offline-first Android apps and does web3, web and mobile security research.">
+<meta name="description" content="FacelessRekt builds small offline-first Android apps and does web application security research: access control, IDOR, PII exposure, business logic.">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -22,8 +22,9 @@
     <p class="eyebrow">FacelessRekt</p>
     <h1>Small Android apps.<br>Sharp security research.</h1>
     <p class="lede">
-      Two things, done seriously: offline-first apps that respect the device they
-      run on, and vulnerability research across web3, web and mobile.
+      Two things, done seriously: offline-first Android apps that respect the device
+      they run on, and web application security research — access control, IDOR,
+      PII exposure and business logic.
     </p>
   </section>
 
@@ -73,29 +74,29 @@
       <li>
         <span class="sev crit">critical</span>
         <div>
-          <p class="f-title">Missing signer check allowed arbitrary withdrawal</p>
-          <p class="f-meta">Solana program · authorisation · reported privately, patched</p>
+          <p class="f-title">Unauthenticated endpoint returned customer records in bulk</p>
+          <p class="f-meta">PII exposure · broken access control · reported privately, patched</p>
+        </div>
+      </li>
+      <li>
+        <span class="sev crit">critical</span>
+        <div>
+          <p class="f-title">Password reset token predictable, allowed account takeover</p>
+          <p class="f-meta">Authentication · weak token generation · reported privately, rotated</p>
         </div>
       </li>
       <li>
         <span class="sev high">high</span>
         <div>
-          <p class="f-title">Access control bypass in a web3 web wallet</p>
-          <p class="f-meta">Web3 · access control · reported privately, resolved</p>
+          <p class="f-title">IDOR exposed cross-tenant invoices and billing addresses</p>
+          <p class="f-meta">IDOR · PII exposure · reported privately, resolved</p>
         </div>
       </li>
       <li>
         <span class="sev high">high</span>
         <div>
-          <p class="f-title">Price oracle read from a manipulable single source</p>
-          <p class="f-meta">DeFi · oracle manipulation · reported privately, mitigated</p>
-        </div>
-      </li>
-      <li>
-        <span class="sev med">medium</span>
-        <div>
-          <p class="f-title">IDOR exposing cross-tenant records in a payments API</p>
-          <p class="f-meta">Web API · IDOR · reported privately, resolved</p>
+          <p class="f-title">Shipping address editable after payment confirmation</p>
+          <p class="f-meta">Business logic · fulfilment abuse · reported privately, resolved</p>
         </div>
       </li>
     </ul>
@@ -111,12 +112,17 @@
   <section id="contact">
     <h2 data-num="03">contact</h2>
     <p class="lede">
-      App support, bug reports, security disclosures:
+      App support and bug reports:
       <a href="mailto:developers@facelessrekt.com">developers@facelessrekt.com</a>
     </p>
+    <p class="lede" style="margin-top:0.9rem">
+      Vulnerability reports and disclosure questions:
+      <a href="mailto:security@facelessrekt.com">security@facelessrekt.com</a>
+    </p>
     <p class="note">
-      For vulnerability reports, include the affected asset, a reproduction
-      sketch and your disclosure expectations. We answer within a few days.
+      Web application findings only. For a report, include the affected asset, a
+      reproduction sketch, observed impact and whether you intend to publish. We
+      answer within a few days.
     </p>
   </section>
 </main>
