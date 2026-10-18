@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security Research — FacelessRekt</title>
+<meta name="description" content="Web3, web and mobile vulnerability research by FacelessRekt. Responsible disclosure policy.">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="../">facelessrekt<span class="mark">.</span></a>
+  <nav>
+    <a href="../#apps">apps</a>
+    <a href="../security/">security</a>
+    <a href="../#contact">contact</a>
+  </nav>
+</header>
+
+<main class="doc">
+  <h1>Security Research</h1>
+  <p class="meta">Independent research · web3, web applications, Android</p>
+
+  <p>
+    I look for ways software breaks its own rules: access checks that only exist
+    in the UI, state that can be raced, signatures that can be replayed, values
+    the client is trusted to send. Everything below was reported privately to the
+    vendor before it appeared here.
+  </p>
+
+  <h2>Focus areas</h2>
+  <table>
+    <thead><tr><th>Area</th><th>What I test</th></tr></thead>
+    <tbody>
+      <tr><td>Web3 / Solana &amp; EVM</td><td>Program logic, account validation, signer checks, oracle and price manipulation, PDAs, upgrade paths</td></tr>
+      <tr><td>Web APIs</td><td>IDOR, authentication and authorisation boundaries, mass assignment, race conditions, SSRF, request smuggling</td></tr>
+      <tr><td>Android</td><td>Exported components, IPC, storage and crypto misuse, client-side trust, obfuscation gaps</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Selected findings</h2>
+  <p class="note">
+    Redacted. Program names, IDs and reproduction steps are omitted unless the
+    vendor has agreed to publication.
+  </p>
+
+  <div class="callout">
+    <p>
+      <strong>Format:</strong> severity, class, one-line impact, and current
+      remediation state. No target is named without permission.
+    </p>
+  </div>
+
+  <ul class="findings">
+    <li>
+      <span class="sev crit">Critical</span>
+      <div>
+        <p class="f-title">Missing signer check allowed arbitrary withdrawal</p>
+        <p class="f-meta">Solana program · authorisation · reported privately, patched</p>
+      </div>
+    </li>
+    <li>
+      <span class="sev high">High</span>
+      <div>
+        <p class="f-title">Access control bypass in a web3 web wallet</p>
+        <p class="f-meta">Web3 · access control · reported privately, resolved</p>
+      </div>
+    </li>
+    <li>
+      <span class="sev high">High</span>
+      <div>
+        <p class="f-title">Price oracle read from a manipulable single source</p>
+        <p class="f-meta">DeFi · oracle manipulation · reported privately, mitigated</p>
+      </div>
+    </li>
+    <li>
+      <span class="sev med">Medium</span>
+      <div>
+        <p class="f-title">IDOR exposing cross-tenant records in a payments API</p>
+        <p class="f-meta">Web API · IDOR · reported privately, resolved</p>
+      </div>
+    </li>
+    <li>
+      <span class="sev med">Medium</span>
+      <div>
+        <p class="f-title">Race condition allowed double-spend of a one-time credit</p>
+        <p class="f-meta">Web API · business logic · reported privately, resolved</p>
+      </div>
+    </li>
+    <li>
+      <span class="sev low">Low</span>
+      <div>
+        <p class="f-title">Client-side enforcement of a premium feature in an Android app</p>
+        <p class="f-meta">Mobile · logic flaw · disclosed to the developer</p>
+      </div>
+    </li>
+  </ul>
+
+  <h2>Disclosure policy</h2>
+  <ul>
+    <li>Report privately to the vendor or program first. No public details before a fix.</li>
+    <li>Coordinated disclosure: 90 days is the default window, extendable if the vendor is actively working on it.</li>
+    <li>No exploitation beyond what is needed to prove impact. No access to other users' data beyond a single proof, no persistence, no lateral movement.</li>
+    <li>Findings are published only after remediation, or with explicit written permission, and always redacted.</li>
+    <li>If a vendor is unresponsive, escalation goes through the program or CERT, not through a public drop.</li>
+  </ul>
+
+  <h2>Report a vulnerability</h2>
+  <p>
+    <a href="mailto:developers@facelessrekt.com">developers@facelessrekt.com</a>
+  </p>
+  <p class="note">
+    Encrypt sensitive details if you prefer; ask for a key first. Include the
+    asset, a reproduction sketch, observed impact, and whether you intend to
+    publish.
+  </p>
+
+  <h2>Own products</h2>
+  <p>
+    Security issues in my own apps go to the same address. Calculator Vault is
+    covered by its <a href="../calcvault/privacy.html">privacy policy</a>; a
+    vulnerability in it is treated as a disclosure, not a support ticket.
+  </p>
+</main>
+
+<footer>
+  <span>&copy; <span id="year">2026</span> FacelessRekt</span>
+  <span><a href="../security/">disclosure policy</a></span>
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

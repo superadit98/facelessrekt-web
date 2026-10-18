@@ -1,0 +1,3 @@
+# nothing to build, nothing to ignore beyond OS noise
+.DS_Store
+Thumbs.db

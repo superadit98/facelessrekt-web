@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FacelessRekt — Apps &amp; Security Research</title>
+<meta name="description" content="FacelessRekt builds small offline-first Android apps and does web3, web and mobile security research.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="./">facelessrekt<span class="mark">.</span></a>
+  <nav>
+    <a href="#apps">apps</a>
+    <a href="security/">security</a>
+    <a href="#contact">contact</a>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <p class="eyebrow">FacelessRekt</p>
+    <h1>Small Android apps.<br>Sharp security research.</h1>
+    <p class="lede">
+      Two things, done seriously: offline-first apps that respect the device they
+      run on, and vulnerability research across web3, web and mobile.
+    </p>
+  </section>
+
+  <section id="apps">
+    <h2 data-num="01">apps</h2>
+    <ul class="apps">
+      <li>
+        <img class="app-icon" src="assets/apps/calcvault.png" alt="Calculator Vault icon" width="56" height="56">
+        <div class="app-body">
+          <h3><a href="calcvault/">Calculator Vault</a></h3>
+          <p class="pkg">ag.calcvault.secure</p>
+          <p>
+            Private photos, videos and files hidden behind a calculator that
+            actually works. AES-256-GCM, offline vault, no separate lock screen.
+          </p>
+          <p class="app-links">
+            <a href="calcvault/">details</a>
+            <a href="calcvault/privacy.html">privacy</a>
+          </p>
+        </div>
+      </li>
+      <li>
+        <img class="app-icon" src="assets/apps/adem.png" alt="Adem icon" width="56" height="56">
+        <div class="app-body">
+          <h3><a href="adem/">Adem — Remote AC Universal</a></h3>
+          <p class="pkg">id.adem.adem_ac</p>
+          <p>
+            Universal AC remote for Android. Controls air conditioners from the
+            phone instead of hunting for the physical remote.
+          </p>
+          <p class="app-links">
+            <a href="adem/">details</a>
+          </p>
+        </div>
+      </li>
+    </ul>
+    <p class="note">More apps land here as they ship.</p>
+  </section>
+
+  <section id="security">
+    <h2 data-num="02">security research</h2>
+    <p class="lede" style="margin-bottom:1.5rem">
+      Independent research. Findings are reported privately to the affected
+      vendor first and published only after remediation or with permission.
+    </p>
+    <ul class="findings">
+      <li>
+        <span class="sev crit">critical</span>
+        <div>
+          <p class="f-title">Missing signer check allowed arbitrary withdrawal</p>
+          <p class="f-meta">Solana program · authorisation · reported privately, patched</p>
+        </div>
+      </li>
+      <li>
+        <span class="sev high">high</span>
+        <div>
+          <p class="f-title">Access control bypass in a web3 web wallet</p>
+          <p class="f-meta">Web3 · access control · reported privately, resolved</p>
+        </div>
+      </li>
+      <li>
+        <span class="sev high">high</span>
+        <div>
+          <p class="f-title">Price oracle read from a manipulable single source</p>
+          <p class="f-meta">DeFi · oracle manipulation · reported privately, mitigated</p>
+        </div>
+      </li>
+      <li>
+        <span class="sev med">medium</span>
+        <div>
+          <p class="f-title">IDOR exposing cross-tenant records in a payments API</p>
+          <p class="f-meta">Web API · IDOR · reported privately, resolved</p>
+        </div>
+      </li>
+    </ul>
+    <p class="app-links" style="margin-top:1rem">
+      <a href="security/">full portfolio &amp; disclosure policy</a>
+    </p>
+    <p class="note">
+      Entries are redacted summaries. Program names, identifiers and reproduction
+      details are omitted unless the vendor has agreed to publication.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2 data-num="03">contact</h2>
+    <p class="lede">
+      App support, bug reports, security disclosures:
+      <a href="mailto:developers@facelessrekt.com">developers@facelessrekt.com</a>
+    </p>
+    <p class="note">
+      For vulnerability reports, include the affected asset, a reproduction
+      sketch and your disclosure expectations. We answer within a few days.
+    </p>
+  </section>
+</main>
+
+<footer>
+  <span>&copy; <span id="year">2026</span> FacelessRekt</span>
+  <span><a href="security/">disclosure policy</a></span>
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
