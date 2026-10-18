@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Calculator Vault — FacelessRekt Studio</title>
+<title>Calculator Vault · FacelessRekt</title>
 <meta name="description" content="Hide photos, videos and files behind a calculator that actually works. Offline vault, AES-256-GCM.">
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
-<header>
-  <a class="brand" href="../">facelessrekt<span class="mark">.</span></a>
-  <nav>
+<header class="header">
+  <h3><a href="../">facelessrekt<span>.</span></a></h3>
+  <nav class="nav">
     <a href="../#apps">apps</a>
     <a href="../security/">security</a>
     <a href="../#contact">contact</a>
@@ -19,12 +19,12 @@
 
 <main class="doc">
   <h1>Calculator Vault</h1>
-  <p class="meta"><code>ag.calcvault.secure</code></p>
+  <p class="doc__meta"><code>ag.calcvault.secure</code></p>
 
   <p>
     A working calculator that hides a private vault. Type your PIN, press
     <code>=</code>, and the vault opens. Type anything else and you get an
-    ordinary calculator — no lock screen, no hint that a PIN was even checked.
+    ordinary calculator. No lock screen, and no hint that a PIN was ever checked.
   </p>
 
   <h2>What it does</h2>
@@ -41,7 +41,7 @@
   <ul>
     <li>AES-256-GCM per file, unique random nonce.</li>
     <li>Master key wrapped with PBKDF2-HMAC-SHA256, 200,000 iterations, salted.</li>
-    <li>Changing the PIN re-wraps the key — files stay readable, nothing re-uploads.</li>
+    <li>Changing the PIN re-wraps the key, so your files stay readable.</li>
     <li>Deleting a file overwrites its data before unlinking.</li>
     <li>Files live in the app's private directory. Not in your gallery.</li>
   </ul>
@@ -55,10 +55,11 @@
   </p>
 </main>
 
-<footer>
-  <span>&copy; <span id="year">2026</span> FacelessRekt</span>
+<footer class="footer">
+  <span>© <span id="year">2026</span> FacelessRekt</span>
   <span><a href="../security/">disclosure policy</a></span>
 </footer>
+
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

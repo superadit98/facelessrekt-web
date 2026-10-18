@@ -3,135 +3,144 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FacelessRekt — Apps &amp; Security Research</title>
-<meta name="description" content="FacelessRekt builds small offline-first Android apps and does web application security research: access control, IDOR, PII exposure, business logic.">
+<title>FacelessRekt</title>
+<meta name="description" content="Android apps and web application security research by FacelessRekt.">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<header>
-  <a class="brand" href="./">facelessrekt<span class="mark">.</span></a>
-  <nav>
+
+<header class="header">
+  <h3><a href="./">facelessrekt<span>.</span></a></h3>
+  <nav class="nav">
     <a href="#apps">apps</a>
-    <a href="security/">security</a>
+    <a href="#security">security</a>
     <a href="#contact">contact</a>
   </nav>
 </header>
 
 <main>
-  <section>
-    <p class="eyebrow">FacelessRekt</p>
-    <h1>Small Android apps.<br>Sharp security research.</h1>
-    <p class="lede">
-      Two things, done seriously: offline-first Android apps that respect the device
-      they run on, and web application security research — access control, IDOR,
-      PII exposure and business logic.
+
+  <section class="about">
+    <h1>Hi, I'm <span class="about__name">FacelessRekt.</span></h1>
+    <h2 class="about__role">I build Android apps and hunt web bugs.</h2>
+    <p class="about__desc">
+      The apps are small and offline first. No accounts, no tracking, no data
+      leaving your phone unless it has to. The security work is web application
+      testing, mostly access control and business logic.
     </p>
+    <div class="about__contact">
+      <a class="btn" href="mailto:developers@facelessrekt.com">email me</a>
+      <a class="btn btn--plain" href="https://github.com/superadit98">github</a>
+    </div>
   </section>
 
-  <section id="apps">
-    <h2 data-num="01">apps</h2>
-    <ul class="apps">
-      <li>
-        <img class="app-icon" src="assets/apps/calcvault.png" alt="Calculator Vault icon" width="56" height="56">
-        <div class="app-body">
-          <h3><a href="calcvault/">Calculator Vault</a></h3>
-          <p class="pkg">ag.calcvault.secure</p>
-          <p>
-            Private photos, videos and files hidden behind a calculator that
-            actually works. AES-256-GCM, offline vault, no separate lock screen.
-          </p>
-          <p class="app-links">
-            <a href="calcvault/">details</a>
-            <a href="calcvault/privacy.html">privacy</a>
-          </p>
+  <section class="section" id="apps">
+    <h2 class="section__title">Apps</h2>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card__top">
+          <img class="card__icon" src="assets/apps/calcvault.png" alt="" width="44" height="44">
+          <div>
+            <h3 class="card__title"><a href="calcvault/">Calculator Vault</a></h3>
+            <p class="card__pkg">ag.calcvault.secure</p>
+          </div>
         </div>
-      </li>
-      <li>
-        <img class="app-icon" src="assets/apps/adem.png" alt="Adem icon" width="56" height="56">
-        <div class="app-body">
-          <h3><a href="adem/">Adem — Remote AC Universal</a></h3>
-          <p class="pkg">id.adem.adem_ac</p>
-          <p>
-            Universal AC remote for Android. Controls air conditioners from the
-            phone instead of hunting for the physical remote.
-          </p>
-          <p class="app-links">
-            <a href="adem/">details</a>
-            <a href="adem/privacy.html">privacy</a>
-          </p>
+        <p class="card__desc">
+          Hides photos, videos and files behind a calculator that still works.
+          Files are encrypted with AES-256-GCM and stay on the device.
+        </p>
+        <p class="card__links">
+          <a href="calcvault/">details</a>
+          <a href="calcvault/privacy.html">privacy</a>
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card__top">
+          <img class="card__icon" src="assets/apps/adem.png" alt="" width="44" height="44">
+          <div>
+            <h3 class="card__title"><a href="adem/">Adem</a></h3>
+            <p class="card__pkg">id.adem.adem_ac</p>
+          </div>
         </div>
-      </li>
-    </ul>
-    <p class="note">More apps land here as they ship.</p>
+        <p class="card__desc">
+          Universal remote for air conditioners. Works offline, no account,
+          no pairing step.
+        </p>
+        <p class="card__links">
+          <a href="adem/">details</a>
+          <a href="adem/privacy.html">privacy</a>
+        </p>
+      </div>
+
+    </div>
+    <p class="note">Two more are in the works.</p>
   </section>
 
-  <section id="security">
-    <h2 data-num="02">security research</h2>
-    <p class="lede" style="margin-bottom:1.5rem">
-      Independent research. Findings are reported privately to the affected
-      vendor first and published only after remediation or with permission.
+  <section class="section" id="security">
+    <h2 class="section__title">Security research</h2>
+    <p class="about__desc" style="margin:0 auto 2rem;text-align:center">
+      I test web applications, mostly the parts that decide who is allowed to
+      see what. Findings go to the vendor privately and get published here only
+      after they are fixed.
     </p>
-    <ul class="findings">
-      <li>
+    <div class="findings">
+
+      <div class="finding">
         <span class="sev crit">critical</span>
         <div>
-          <p class="f-title">Unauthenticated endpoint returned customer records in bulk</p>
-          <p class="f-meta">PII exposure · broken access control · reported privately, patched</p>
+          <p class="finding__title">An endpoint returned customer records without authentication</p>
+          <p class="finding__meta">pii exposure / broken access control / patched</p>
         </div>
-      </li>
-      <li>
+      </div>
+
+      <div class="finding">
         <span class="sev crit">critical</span>
         <div>
-          <p class="f-title">Password reset token predictable, allowed account takeover</p>
-          <p class="f-meta">Authentication · weak token generation · reported privately, rotated</p>
+          <p class="finding__title">Password reset token was guessable, leading to account takeover</p>
+          <p class="finding__meta">authentication / token generation / rotated</p>
         </div>
-      </li>
-      <li>
+      </div>
+
+      <div class="finding">
         <span class="sev high">high</span>
         <div>
-          <p class="f-title">IDOR exposed cross-tenant invoices and billing addresses</p>
-          <p class="f-meta">IDOR · PII exposure · reported privately, resolved</p>
+          <p class="finding__title">Invoices from other tenants readable by changing an id</p>
+          <p class="finding__meta">idor / pii exposure / resolved</p>
         </div>
-      </li>
-      <li>
+      </div>
+
+      <div class="finding">
         <span class="sev high">high</span>
         <div>
-          <p class="f-title">Shipping address editable after payment confirmation</p>
-          <p class="f-meta">Business logic · fulfilment abuse · reported privately, resolved</p>
+          <p class="finding__title">Shipping address could be changed after the order was paid</p>
+          <p class="finding__meta">business logic / fulfilment / resolved</p>
         </div>
-      </li>
-    </ul>
-    <p class="app-links" style="margin-top:1rem">
-      <a href="security/">full portfolio &amp; disclosure policy</a>
-    </p>
-    <p class="note">
-      Entries are redacted summaries. Program names, identifiers and reproduction
-      details are omitted unless the vendor has agreed to publication.
+      </div>
+
+    </div>
+    <p class="card__links" style="justify-content:center;margin-top:1.5rem">
+      <a href="security/">read the full list</a>
     </p>
   </section>
 
-  <section id="contact">
-    <h2 data-num="03">contact</h2>
-    <p class="lede">
-      App support and bug reports:
-      <a href="mailto:developers@facelessrekt.com">developers@facelessrekt.com</a>
-    </p>
-    <p class="lede" style="margin-top:0.9rem">
-      Vulnerability reports and disclosure questions:
-      <a href="mailto:security@facelessrekt.com">security@facelessrekt.com</a>
-    </p>
-    <p class="note">
-      Web application findings only. For a report, include the affected asset, a
-      reproduction sketch, observed impact and whether you intend to publish. We
-      answer within a few days.
+  <section class="section" id="contact">
+    <h2 class="section__title">Contact</h2>
+    <p class="about__desc" style="margin:0 auto;text-align:center">
+      For app support or a bug in one of the apps above,
+      mail <a href="mailto:developers@facelessrekt.com">developers@facelessrekt.com</a>.
+      I usually reply within a few days.
     </p>
   </section>
+
 </main>
 
-<footer>
-  <span>&copy; <span id="year">2026</span> FacelessRekt</span>
+<footer class="footer">
+  <span>© <span id="year">2026</span> FacelessRekt</span>
   <span><a href="security/">disclosure policy</a></span>
 </footer>
+
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

@@ -3,14 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Security Research — FacelessRekt</title>
-<meta name="description" content="Web application security research by FacelessRekt: broken access control, IDOR, PII exposure, business logic. Responsible disclosure policy.">
+<title>Security · FacelessRekt</title>
+<meta name="description" content="Web application security research by FacelessRekt: access control, IDOR, PII exposure, business logic.">
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
-<header>
-  <a class="brand" href="../">facelessrekt<span class="mark">.</span></a>
-  <nav>
+
+<header class="header">
+  <h3><a href="../">facelessrekt<span>.</span></a></h3>
+  <nav class="nav">
     <a href="../#apps">apps</a>
     <a href="./">security</a>
     <a href="../#contact">contact</a>
@@ -18,183 +19,140 @@
 </header>
 
 <main class="doc">
-  <h1>Security Research</h1>
-  <p class="meta">Web application security · independent research</p>
+  <h1>Security research</h1>
+  <p class="doc__meta">web application testing · independent</p>
 
   <p>
-    I break web applications the way real attackers do: not by finding a scary
+    I break web applications the way an attacker would: not by finding a scary
     string, but by proving that one account can reach another account's data, or
-    that a business rule holds only in the UI. Everything below was reported
-    privately to the vendor before it appeared here.
+    that a business rule only holds in the browser.
   </p>
 
-  <h2>Focus areas</h2>
+  <h2>What I test</h2>
   <table>
-    <thead><tr><th>Class</th><th>What I test</th></tr></thead>
+    <thead><tr><th>Area</th><th>What it covers</th></tr></thead>
     <tbody>
-      <tr>
-        <td>Broken access control</td>
-        <td>Missing server-side authorisation, privilege escalation, role confusion, horizontal and vertical boundaries</td>
-      </tr>
-      <tr>
-        <td>IDOR</td>
-        <td>Direct object references across tenants and users; sequentially-guessable identifiers; UUIDs leaked in responses, exports or emails</td>
-      </tr>
-      <tr>
-        <td>PII exposure</td>
-        <td>Personal data reachable without authorisation — through APIs, exports, cached pages, logs or misconfigured storage</td>
-      </tr>
-      <tr>
-        <td>Delivery-order / fulfilment abuse</td>
-        <td>Address and recipient manipulation, re-routing after payment, carrier and status field tampering, order replay</td>
-      </tr>
-      <tr>
-        <td>Business logic</td>
-        <td>Race conditions, negative and fractional quantities, coupon and credit replay, price tampering, state-machine shortcuts</td>
-      </tr>
-      <tr>
-        <td>Authentication &amp; session</td>
-        <td>Password reset flows, token lifetime, session fixation, MFA bypass, account enumeration</td>
-      </tr>
+      <tr><td>Broken access control</td><td>Missing server side checks, privilege escalation, role confusion, horizontal and vertical boundaries</td></tr>
+      <tr><td>IDOR</td><td>Object references across tenants, guessable ids, uuids leaked in responses, exports or emails</td></tr>
+      <tr><td>PII exposure</td><td>Personal data reachable without authorisation through APIs, exports, cached pages, logs or storage</td></tr>
+      <tr><td>Delivery and fulfilment</td><td>Address and recipient changes after payment, carrier field tampering, order replay</td></tr>
+      <tr><td>Business logic</td><td>Race conditions, negative quantities, coupon replay, price tampering, state machine shortcuts</td></tr>
+      <tr><td>Authentication</td><td>Password reset flows, token lifetime, session fixation, MFA bypass, account enumeration</td></tr>
     </tbody>
   </table>
 
   <h2>Severity</h2>
   <p>
-    Severity follows impact, not novelty. A dull bug that exposes other people's
-    personal data outranks a clever one that only prints a debug string.
+    Severity follows impact, not novelty. A boring bug that leaks other people's
+    personal data beats a clever one that prints a debug string.
   </p>
   <table>
     <thead><tr><th>Level</th><th>Typical impact</th></tr></thead>
     <tbody>
-      <tr><td><span class="sev crit">critical</span></td><td>Mass PII exposure, authentication bypass, full account takeover, remote code execution</td></tr>
-      <tr><td><span class="sev high">high</span></td><td>Cross-tenant data access, single-account takeover, privileged action as another user, order or payment manipulation</td></tr>
-      <tr><td><span class="sev med">medium</span></td><td>Limited data exposure, stored logic abuse with financial impact, SSRF to internal services, CSRF on a sensitive action</td></tr>
-      <tr><td><span class="sev low">low</span></td><td>Information disclosure with no personal data, missing hardening, reflected-only issues</td></tr>
+      <tr><td><span class="sev crit">critical</span></td><td>Mass PII exposure, authentication bypass, account takeover at scale, remote code execution</td></tr>
+      <tr><td><span class="sev high">high</span></td><td>Cross tenant data access, single account takeover, acting as another user, order or payment manipulation</td></tr>
+      <tr><td><span class="sev med">medium</span></td><td>Limited data exposure, logic abuse with financial impact, SSRF to internal services, CSRF on a sensitive action</td></tr>
+      <tr><td><span class="sev low">low</span></td><td>Information disclosure with no personal data, missing hardening, reflected only issues</td></tr>
     </tbody>
   </table>
 
-  <h2>Selected findings</h2>
+  <h2>Findings</h2>
   <p class="note">
-    Redacted. Program names, identifiers and reproduction steps are omitted
-    unless the vendor has agreed to publication.
+    Program names and reproduction steps are left out unless the vendor agreed
+    to publication.
   </p>
 
-  <div class="callout">
-    <p>
-      <strong>Format:</strong> severity, class, one-line impact, current
-      remediation state. No target is named without permission.
-    </p>
-  </div>
-
-  <ul class="findings">
-    <li>
+  <div class="findings">
+    <div class="finding">
       <span class="sev crit">critical</span>
       <div>
-        <p class="f-title">Unauthenticated endpoint returned customer records in bulk</p>
-        <p class="f-meta">PII exposure · broken access control · reported privately, patched</p>
+        <p class="finding__title">An endpoint returned customer records without authentication</p>
+        <p class="finding__meta">pii exposure / broken access control / patched</p>
       </div>
-    </li>
-    <li>
+    </div>
+    <div class="finding">
       <span class="sev crit">critical</span>
       <div>
-        <p class="f-title">Password reset token predictable, allowed account takeover</p>
-        <p class="f-meta">Authentication · weak token generation · reported privately, rotated</p>
+        <p class="finding__title">Password reset token was guessable, leading to account takeover</p>
+        <p class="finding__meta">authentication / token generation / rotated</p>
       </div>
-    </li>
-    <li>
+    </div>
+    <div class="finding">
       <span class="sev high">high</span>
       <div>
-        <p class="f-title">IDOR exposed cross-tenant invoices and billing addresses</p>
-        <p class="f-meta">IDOR · PII exposure · reported privately, resolved</p>
+        <p class="finding__title">Invoices from other tenants readable by changing an id</p>
+        <p class="finding__meta">idor / pii exposure / resolved</p>
       </div>
-    </li>
-    <li>
+    </div>
+    <div class="finding">
       <span class="sev high">high</span>
       <div>
-        <p class="f-title">Shipping address editable after payment confirmation</p>
-        <p class="f-meta">Business logic · fulfilment abuse · reported privately, resolved</p>
+        <p class="finding__title">Admin actions reachable because the role check lived in the browser</p>
+        <p class="finding__meta">broken access control / privilege escalation / patched</p>
       </div>
-    </li>
-    <li>
+    </div>
+    <div class="finding">
       <span class="sev high">high</span>
       <div>
-        <p class="f-title">Role check applied on the client only; admin actions reachable</p>
-        <p class="f-meta">Broken access control · privilege escalation · reported privately, patched</p>
+        <p class="finding__title">Shipping address could be changed after the order was paid</p>
+        <p class="finding__meta">business logic / fulfilment / resolved</p>
       </div>
-    </li>
-    <li>
+    </div>
+    <div class="finding">
       <span class="sev med">medium</span>
       <div>
-        <p class="f-title">Race condition allowed one-time coupon to be redeemed repeatedly</p>
-        <p class="f-meta">Business logic · concurrency · reported privately, resolved</p>
+        <p class="finding__title">A one time coupon could be redeemed several times at once</p>
+        <p class="finding__meta">business logic / concurrency / resolved</p>
       </div>
-    </li>
-    <li>
+    </div>
+    <div class="finding">
       <span class="sev med">medium</span>
       <div>
-        <p class="f-title">Order status websocket accepted client-supplied state</p>
-        <p class="f-meta">Business logic · trust boundary · reported privately, resolved</p>
+        <p class="finding__title">Order status websocket accepted a state supplied by the client</p>
+        <p class="finding__meta">business logic / trust boundary / resolved</p>
       </div>
-    </li>
-    <li>
+    </div>
+    <div class="finding">
       <span class="sev low">low</span>
       <div>
-        <p class="f-title">Verbose error page leaked internal service names</p>
-        <p class="f-meta">Information disclosure · reported privately, fixed</p>
+        <p class="finding__title">Error pages leaked internal service names</p>
+        <p class="finding__meta">information disclosure / fixed</p>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 
-  <h2>Disclosure policy</h2>
+  <h2>How I report</h2>
   <ul>
-    <li>Report privately to the vendor or program first. No public details before a fix.</li>
-    <li>
-      Coordinated disclosure: 90 days is the default window, extendable when the
-      vendor is actively working on it.
-    </li>
-    <li>
-      No exploitation beyond what is needed to prove impact. No bulk data
-      retrieval — a single record is enough to demonstrate exposure, and I stop
-      there.
-    </li>
-    <li>
-      Personal data encountered during testing is never stored, shared or
-      retained. It is reported by type and count, not by content.
-    </li>
+    <li>Private report to the vendor or program first. Nothing public before a fix.</li>
+    <li>90 days is the default window, longer if the vendor is actively working on it.</li>
+    <li>I only take what is needed to prove impact. One record is enough to show exposure, so I stop there.</li>
+    <li>Personal data found during testing is never stored, shared or kept. Reports describe type and count, never content.</li>
     <li>No persistence, no lateral movement, no denial of service, no social engineering of staff.</li>
-    <li>
-      Findings are published only after remediation, or with explicit written
-      permission, and always redacted.
-    </li>
-    <li>
-      If a vendor is unresponsive, escalation goes through the program or CERT,
-      not through a public drop.
-    </li>
+    <li>If a vendor goes quiet, escalation goes through the program or a CERT, not a public drop.</li>
   </ul>
 
-  <h2>Report a vulnerability</h2>
+  <h2>Send me a report</h2>
   <p>
-    <a href="mailto:security@facelessrekt.com">security@facelessrekt.com</a>
+    If you have a finding for a target I am testing, or you want me to look at
+    something, write to
+    <a href="mailto:security@facelessrekt.com">security@facelessrekt.com</a>.
   </p>
   <p class="note">
-    Include the affected asset, a reproduction sketch, observed impact, and
-    whether you intend to publish. Encrypt sensitive details if you prefer —
-    ask for a key first.
+    Include the target, how to reproduce it, what you observed, and whether you
+    plan to publish. Ask for a key first if you want it encrypted.
+  </p>
+  <p class="note">
+    This address is for security work. For a bug in one of my own apps, use
+    <a href="mailto:developers@facelessrekt.com">developers@facelessrekt.com</a> instead.
   </p>
 
-  <h2>Own products</h2>
-  <p>
-    Security issues in my own apps go to the same address. Calculator Vault is
-    covered by its <a href="../calcvault/privacy.html">privacy policy</a>; a
-    vulnerability in it is treated as a disclosure, not a support ticket.
-  </p>
 </main>
 
-<footer>
-  <span>&copy; <span id="year">2026</span> FacelessRekt</span>
+<footer class="footer">
+  <span>© <span id="year">2026</span> FacelessRekt</span>
   <span><a href="./">disclosure policy</a></span>
 </footer>
+
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
